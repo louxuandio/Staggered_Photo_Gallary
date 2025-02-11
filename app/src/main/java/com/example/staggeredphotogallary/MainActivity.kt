@@ -52,7 +52,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StaggeredPhotoGallaryTheme {
-                //TODO: click->enlarge using coroutine animation
                 MainScreen()
             }
         }
@@ -64,7 +63,7 @@ fun MainScreen(){
     var context = LocalContext.current
     val photos = loadPhotos(context)
     //val coroutineScope = rememberCoroutineScope()
-    val selectedImage = remember { mutableStateOf<Int>(-1) }
+    val selectedImage = remember { mutableStateOf<Int>(-1) }  //With the help of ChatGPT
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier.fillMaxSize(),
@@ -79,13 +78,13 @@ fun MainScreen(){
                     .fillMaxWidth()
                     .height(300.dp)
                     .clickable {
-                        selectedImage.value = if (selectedImage.value == resId) -1 else resId
+                        selectedImage.value = if (selectedImage.value == resId) -1 else resId //ChatGPT
                     }
             ){
                 val targetSize by animateDpAsState(targetValue = if (selectedImage.value == resId) 400.dp else 200.dp) //ChatGPT
                 Image(
                     painter = painterResource(id = resId),
-                    contentDescription = title, //TODO
+                    contentDescription = title,
                     modifier = Modifier.fillMaxSize()
                         .width(targetSize)
                         .height((100..300).random().dp) //ChatGPT
@@ -93,6 +92,7 @@ fun MainScreen(){
             }
         }
     }
+    //ChatGPT helps me to frame the following if condition
     if (selectedImage.value != -1){
         val resId = selectedImage.value
         Box(
@@ -111,12 +111,13 @@ fun MainScreen(){
         }
     }
 }
+//ChatGPT helps me with the function, but I wrote most by myself
 fun loadPhotos(context: Context): List<Pair<Int, String>>{
     val photos = mutableListOf<Pair<Int, String>>()
-    val parser = context.resources.getXml(R.xml.photos)
+    val parser = context.resources.getXml(R.xml.photos)  //ChatGPT
 
     while (parser.next() != XmlPullParser.END_DOCUMENT) {
-        if (parser.eventType == XmlPullParser.START_TAG && parser.name == "photo") {
+        if (parser.eventType == XmlPullParser.START_TAG && parser.name == "photo") { //This line is written by ChatGPT. This function does not work with thin line
             var title = ""
             var fileName = ""
 
@@ -125,8 +126,8 @@ fun loadPhotos(context: Context): List<Pair<Int, String>>{
             parser.nextTag()
             if (parser.name == "file") fileName = parser.nextText()
 
-            val resId = context.resources.getIdentifier(fileName.replace(".jpg", ""), "drawable", context.packageName)
-            if (resId != 0) photos.add(resId to title)
+            val resId = context.resources.getIdentifier(fileName.replace(".jpg", ""), "drawable", context.packageName)  //ChatGPT
+            if (resId != 0) photos.add(resId to title) //ChatGPT
         }
     }
 
