@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <photos>
     <photo>
-        <title>pic1</title>
-        <file>pic1.jpg</file>
+        <title>chandelier</title>
+        <file>chandelier.jpg</file>
     </photo>
 
     <photo>
-        <title>pic2</title>
-        <file>pic2.jpg</file>
+        <title>mansion</title>
+        <file>mansion.jpg</file>
     </photo>
 
     <photo>
-    <title>pic3</title>
-    <file>pic3.jpg</file>
+        <title>sea</title>
+        <file>sea.jpg</file>
     </photo>
 
     <photo>
-        <title>pic4</title>
-        <file>pic4.jpg</file>
+        <title>frontview</title>
+        <file>frontview.jpg</file>
     </photo>
 
     <photo>
-        <title>pic5</title>
-        <file>pic5.jpg</file>
+        <title>water</title>
+        <file>water.jpg</file>
     </photo>
 
-    <photo>
-        <title>pic6</title>
-        <file>pic6.jpg</file>
-    </photo>
 </photos>
